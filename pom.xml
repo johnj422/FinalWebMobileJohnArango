@@ -20,6 +20,7 @@
         <cucumber.version>7.9.0</cucumber.version>
         <cucumberTestNG.version>7.9.0</cucumberTestNG.version>
         <slf4j.version>2.0.5</slf4j.version>
+        <tinylog.version>2.6.0-M2</tinylog.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -51,6 +52,17 @@
             <version>${cucumberTestNG.version}</version>
         </dependency>
         <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-plugin</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
@@ -61,7 +73,15 @@
             <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.tinylog</groupId>
+            <artifactId>tinylog-api</artifactId>
+            <version>${tinylog.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.tinylog</groupId>
+            <artifactId>tinylog-impl</artifactId>
+            <version>${tinylog.version}</version>
+        </dependency>
     </dependencies>
-
 </project>
