@@ -31,7 +31,7 @@ public class HomePage extends WebOperations {
     private WebElement passwordSignUpInput;
     @FindBy(id = "close")
     private WebElement closeBtn;
-    
+
 
     //Login Locators
     @FindBy(css = "article[id='sideLogin-left-rail'] button[class='button-alt med']")
@@ -70,7 +70,7 @@ public class HomePage extends WebOperations {
     private WebElement userIcon;
 
     @FindBy(css = ".display-user")
-    private WebElement userOffline;
+    private WebElement userPanel;
 
     @FindBy(id = "AccountDeleteLink")
     private WebElement accountDeleteLink;
@@ -108,6 +108,10 @@ public class HomePage extends WebOperations {
         super.getDriver().switchTo().frame(iFrame);
     }
 
+    public void changingToDefaultIframe(WebElement iFrame){
+        super.getDriver().switchTo().defaultContent();
+    }
+
     public boolean isEspnLogoDisplayed() {
         return espnLogo.isDisplayed();
     }
@@ -135,7 +139,9 @@ public class HomePage extends WebOperations {
     public void logIn(){
         clickElement(btnSubmit);
     }
-
+    public void clickSignUp(){
+        clickElement(btnSubmit);
+    }
     public void clickLogOutButton() {
         clickElement(logOutButton);
     }
@@ -144,8 +150,8 @@ public class HomePage extends WebOperations {
         return userIcon;
     }
 
-    public String validateNoUserName(){
-        return userOffline.getText();
+    public String validateUserName(){
+        return userPanel.getText();
     }
 
     public void clickProfileLink() {
@@ -193,6 +199,7 @@ public class HomePage extends WebOperations {
 
     public void sendNewUserFirstName(String firstName){
         waitForVisibility(firstNameInput);
+        clickElement(firstNameInput);
         firstNameInput.sendKeys(firstName);
     }
 
@@ -203,18 +210,18 @@ public class HomePage extends WebOperations {
 
     public void sendNewUserEmail(String email){
         waitForVisibility(emailSignUpInput);
-        lastNameInput.sendKeys(email);
+        emailSignUpInput.sendKeys(email);
     }
     public void sendNewUserPassword(String password){
         waitForVisibility(passwordSignUpInput);
-        lastNameInput.sendKeys(password);
+        passwordSignUpInput.sendKeys(password);
     }
     public void singUp(String firstName, String lastName, String email, String password){
         sendNewUserFirstName(firstName);
         sendNewUserLastName(lastName);
         sendNewUserEmail(email);
         sendNewUserPassword(password);
-        clickElement(signUpButton);
+        clickElement(btnSubmit);
     }
 
     public void waitForCancelBtn(){

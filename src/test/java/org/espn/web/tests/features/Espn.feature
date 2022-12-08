@@ -20,3 +20,6 @@ Feature: ESPN web page Navigation Test
     Given I am in the login modal
     When I click the signUp button
     And I complete the SignUp form
+    Then I should be logged in
+
+  Scenario: Navigate to WatchPage

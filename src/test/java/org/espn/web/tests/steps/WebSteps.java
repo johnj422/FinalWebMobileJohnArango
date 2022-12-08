@@ -1,12 +1,15 @@
 package org.espn.web.tests.steps;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.checkerframework.checker.units.qual.C;
 import org.espn.web.pageObjects.HomePage;
 import org.espn.web.tests.hooks.WebHooks;
 import org.testng.asserts.SoftAssert;
 import org.tinylog.Logger;
+import org.espn.web.helpers.Constants;
 
 public class WebSteps {
 
@@ -60,5 +63,18 @@ public class WebSteps {
         Logger.info("Validating if Close button is displayed");
         softAssert.assertTrue(homePage.validateIfCloseButtonIsDisplayed(), "Close button must be displayed");
         softAssert.assertAll();
+    }
+
+    @And("I complete the SignUp form")
+    public void iCompleteTheSignUpForm() {
+        Logger.info("Signing Up");
+        homePage.singUp(Constants.FIRST_NAME, Constants.LAST_NAME, Constants.SIGN_UP_EMAIL, Constants.PASSWORD);
+    }
+
+    @Then("I should be logged in")
+    public void iShouldBeLoggedIn() {
+        Logger.info("Validating if user was successfully created");
+        homePage.performMouseHover(homePage.getUserIcon());
+        softAssert.assertEquals(homePage.validateUserName(), Constants.FIRST_NAME, "User name should be ${Constants.FIRST_NAME}");
     }
 }
