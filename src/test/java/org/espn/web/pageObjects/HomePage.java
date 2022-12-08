@@ -1,12 +1,12 @@
 package org.espn.web.pageObjects;
 
-import org.espn.web.helpers.Constants;
+import org.espn.web.config.WebOperations;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
-public class HomePage extends BasePage {
+public class HomePage extends WebOperations {
 
 
     //Promo Banner Locators
@@ -15,6 +15,23 @@ public class HomePage extends BasePage {
 
     @FindBy(css = "#fittPageContainer .PromoBanner__CloseBtn")
     private WebElement bannerCloseButton;
+
+    //SignUp Locators
+    @FindBy(id = "BtnCreateAccount")
+    private WebElement signUpButton;
+    @FindBy(css = "[role='text']")
+    private WebElement signUpTitle;
+    @FindBy(id = "InputFirstName")
+    private WebElement firstNameInput;
+    @FindBy(id = "InputLastName")
+    private WebElement lastNameInput;
+    @FindBy(id = "InputEmail")
+    private WebElement emailSignUpInput;
+    @FindBy(id = "password-new")
+    private WebElement passwordSignUpInput;
+    @FindBy(id = "close")
+    private WebElement closeBtn;
+    
 
     //Login Locators
     @FindBy(css = "article[id='sideLogin-left-rail'] button[class='button-alt med']")
@@ -67,9 +84,6 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    public void navigateToHomePage(){
-        navigateTo(Constants.URL);
-    }
     public void closeBanner() {
         if (promoBannerIFrame == null) {
             super.getDriver().switchTo().defaultContent();
@@ -79,6 +93,9 @@ public class HomePage extends BasePage {
         clickElement(bannerCloseButton);
     }
 
+    public void clickSignUpButton(){
+        clickElement(signUpButton);
+    }
     public void userLogin(){
         clickElement(userLogin);
     }
@@ -99,7 +116,7 @@ public class HomePage extends BasePage {
         waitForVisibility(espnLogo);
     }
 
-    public boolean isBtnSubmitDisplayed() {
+    public boolean validateIfBtnSubmitDisplayed() {
         return btnSubmit.isDisplayed();
     }
 
@@ -149,6 +166,55 @@ public class HomePage extends BasePage {
     public String getIframeTitle(){
         waitForVisibility(frameTitle);
         return frameTitle.getText();
+    }
+
+    public boolean validateIfTitleIsDisplayed(){
+        return frameTitle.isDisplayed();
+    }
+
+    public boolean validateIfFirstNameInputIsDisplayed(){
+        return firstNameInput.isDisplayed();
+    }
+
+    public boolean validateIfLastNameInputIsDisplayed(){
+        return lastNameInput.isDisplayed();
+    }
+
+    public boolean validateIfEmailSignUpInputIsDisplayed(){
+        return emailSignUpInput.isDisplayed();
+    }
+
+    public boolean validateIfPasswordSignUpInputIsDisplayed(){
+        return passwordSignUpInput.isDisplayed();
+    }
+    public boolean validateIfCloseButtonIsDisplayed(){
+        return closeBtn.isDisplayed();
+    }
+
+    public void sendNewUserFirstName(String firstName){
+        waitForVisibility(firstNameInput);
+        firstNameInput.sendKeys(firstName);
+    }
+
+    public void sendNewUserLastName(String lastname){
+        waitForVisibility(lastNameInput);
+        lastNameInput.sendKeys(lastname);
+    }
+
+    public void sendNewUserEmail(String email){
+        waitForVisibility(emailSignUpInput);
+        lastNameInput.sendKeys(email);
+    }
+    public void sendNewUserPassword(String password){
+        waitForVisibility(passwordSignUpInput);
+        lastNameInput.sendKeys(password);
+    }
+    public void singUp(String firstName, String lastName, String email, String password){
+        sendNewUserFirstName(firstName);
+        sendNewUserLastName(lastName);
+        sendNewUserEmail(email);
+        sendNewUserPassword(password);
+        clickElement(signUpButton);
     }
 
     public void waitForCancelBtn(){
