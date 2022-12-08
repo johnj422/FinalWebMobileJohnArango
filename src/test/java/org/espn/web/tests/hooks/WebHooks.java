@@ -1,24 +1,31 @@
 package org.espn.web.tests.hooks;
 
-import io.cucumber.java.Before;
+import io.cucumber.java.*;
 import org.espn.web.config.Driver;
 import org.espn.web.helpers.Constants;
-import org.espn.web.pageObjects.HomePage;
 import org.openqa.selenium.WebDriver;
+import org.tinylog.Logger;
+
 
 public class WebHooks {
 
     protected static Driver driver;
-    protected HomePage homePage;
 
-    @Before
+    @Before("@webAutomation")
     public void testSetUp(){
         driver = new Driver();
+        Logger.info("Deleting all cookies");
         driver.getDriver().manage().deleteAllCookies();
         driver.getDriver().manage().window().maximize();
+        Logger.info("Navigating to Homepage");
         driver.getDriver().get(Constants.URL);
-        homePage = new HomePage(driver.getDriver());
     }
+
+/*    @After
+    public void teardown(){
+        Logger.info("Shutting down");
+        driver.getDriver().quit();
+    }*/
 
     public static WebDriver getDriver(){
         return driver.getDriver();
