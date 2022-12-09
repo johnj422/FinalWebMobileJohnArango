@@ -1,20 +1,29 @@
 package org.espn.web.pageObjects;
 
-import org.espn.web.helpers.Constants;
+import org.espn.web.config.WebOperations;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
-public class HomePage extends BasePage {
+public class HomePage extends WebOperations {
 
+    //SignUp Locators
+    @FindBy(id = "BtnCreateAccount")
+    private WebElement signUpButton;
+    @FindBy(css = "[role='text']")
+    private WebElement signUpTitle;
+    @FindBy(id = "InputFirstName")
+    private WebElement firstNameInput;
+    @FindBy(id = "InputLastName")
+    private WebElement lastNameInput;
+    @FindBy(id = "InputEmail")
+    private WebElement emailSignUpInput;
+    @FindBy(id = "password-new")
+    private WebElement passwordSignUpInput;
+    @FindBy(id = "close")
+    private WebElement closeBtn;
 
-    //Promo Banner Locators
-    @FindBy(css = ".promo-banner-container > iframe")
-    private WebElement promoBannerIFrame;
-
-    @FindBy(css = "#fittPageContainer .PromoBanner__CloseBtn")
-    private WebElement bannerCloseButton;
 
     //Login Locators
     @FindBy(css = "article[id='sideLogin-left-rail'] button[class='button-alt med']")
@@ -52,8 +61,13 @@ public class HomePage extends BasePage {
     @FindBy(css = ".user")
     private WebElement userIcon;
 
+    @FindBy(id = "global-user-trigger")
+    private WebElement notLoggedUserIcon;
+
     @FindBy(css = ".display-user")
-    private WebElement userOffline;
+    private WebElement userPanel;
+
+
 
     @FindBy(id = "AccountDeleteLink")
     private WebElement accountDeleteLink;
@@ -63,22 +77,16 @@ public class HomePage extends BasePage {
     @FindBy(css = "#TextError")
     private WebElement errorMsg;
 
+    @FindBy(className = "watch")
+    private WebElement watchLink;
+
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
-    public void navigateToHomePage(){
-        navigateTo(Constants.URL);
+    public void clickSignUpButton(){
+        clickElement(signUpButton);
     }
-    public void closeBanner() {
-        if (promoBannerIFrame == null) {
-            super.getDriver().switchTo().defaultContent();
-        }
-
-        super.getDriver().switchTo().frame(promoBannerIFrame);
-        clickElement(bannerCloseButton);
-    }
-
     public void userLogin(){
         clickElement(userLogin);
     }
@@ -91,6 +99,10 @@ public class HomePage extends BasePage {
         super.getDriver().switchTo().frame(iFrame);
     }
 
+    public void changingToDefaultIframe(WebElement iFrame){
+        super.getDriver().switchTo().defaultContent();
+    }
+
     public boolean isEspnLogoDisplayed() {
         return espnLogo.isDisplayed();
     }
@@ -99,7 +111,7 @@ public class HomePage extends BasePage {
         waitForVisibility(espnLogo);
     }
 
-    public boolean isBtnSubmitDisplayed() {
+    public boolean validateIfBtnSubmitDisplayed() {
         return btnSubmit.isDisplayed();
     }
 
@@ -118,17 +130,22 @@ public class HomePage extends BasePage {
     public void logIn(){
         clickElement(btnSubmit);
     }
-
+    public void clickSignUp(){
+        clickElement(btnSubmit);
+    }
     public void clickLogOutButton() {
         clickElement(logOutButton);
     }
 
     public WebElement getUserIcon() {
+        waitForVisibility(userIcon);
         return userIcon;
     }
 
-    public String validateNoUserName(){
-        return userOffline.getText();
+    public WebElement getNotLoggedUserIcon() { return notLoggedUserIcon; }
+
+    public String validateUserName(){
+        return userPanel.getText();
     }
 
     public void clickProfileLink() {
@@ -151,20 +168,71 @@ public class HomePage extends BasePage {
         return frameTitle.getText();
     }
 
-    public void waitForCancelBtn(){
-        waitForClickable(cancelBtn);
+    public boolean validateIfTitleIsDisplayed(){
+        return frameTitle.isDisplayed();
     }
 
-    public void waitForErrorMsg(){
-        waitForClickable(errorMsg);
+    public boolean validateIfFirstNameInputIsDisplayed(){
+        return firstNameInput.isDisplayed();
     }
 
-    public void validateReLogin(String email, String password){
+    public boolean validateIfLastNameInputIsDisplayed(){
+        return lastNameInput.isDisplayed();
+    }
+
+    public boolean validateIfEmailSignUpInputIsDisplayed(){
+        return emailSignUpInput.isDisplayed();
+    }
+
+    public boolean validateIfPasswordSignUpInputIsDisplayed(){
+        return passwordSignUpInput.isDisplayed();
+    }
+    public boolean validateIfCloseButtonIsDisplayed(){
+        return closeBtn.isDisplayed();
+    }
+
+    public void sendNewUserFirstName(String firstName){
+        waitForVisibility(firstNameInput);
+        clickElement(firstNameInput);
+        firstNameInput.sendKeys(firstName);
+    }
+
+    public void sendNewUserLastName(String lastname){
+        waitForVisibility(lastNameInput);
+        lastNameInput.sendKeys(lastname);
+    }
+
+    public void sendNewUserEmail(String email){
+        waitForVisibility(emailSignUpInput);
+        emailSignUpInput.sendKeys(email);
+    }
+    public void sendNewUserPassword(String password){
+        waitForVisibility(passwordSignUpInput);
+        passwordSignUpInput.sendKeys(password);
+    }
+    public void singUp(String firstName, String lastName, String email, String password){
+        sendNewUserFirstName(firstName);
+        sendNewUserLastName(lastName);
+        sendNewUserEmail(email);
+        sendNewUserPassword(password);
+        clickElement(btnSubmit);
+    }
+
+    public void loginToAccount(String email, String password){
         userLogin();
         changingIframe(userFrame);
         sendUserEmail(email);
         sendUserPassword(password);
         clickElement(btnSubmit);
 
+    }
+
+    public WatchPage navigateToWatch(){
+        clickElement(watchLink);
+        return new WatchPage(super.getDriver());
+    }
+
+    public void pageRefresh(){
+        super.getDriver().navigate().refresh();
     }
 }

@@ -1,7 +1,6 @@
 package org.espn.web.config;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,13 +22,10 @@ public class WebOperations {
         initElements(driver, this);
     }
 
-    protected WebDriver getDriver(){
+    public WebDriver getDriver(){
         return driver;
     }
 
-    public void navigateTo(String url){
-        driver.get(url);
-    }
     public void clickElement(WebElement element) {
         waitForClickable(element);
         element.click();
