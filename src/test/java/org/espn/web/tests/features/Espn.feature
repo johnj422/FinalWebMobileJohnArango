@@ -2,7 +2,7 @@
 Feature: ESPN web page Navigation Test
   In order to validate web page's functionalities
   As a ESPN user
-  I want to be able to login and navigate to ESP subPages
+  I want to be able to login and navigate to ESPN subPages
 
   Background:
     Given I am in the ESPN website
