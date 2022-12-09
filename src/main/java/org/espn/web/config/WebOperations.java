@@ -9,7 +9,7 @@ import java.time.Duration;
 
 import static org.openqa.selenium.support.PageFactory.initElements;
 
-public class WebOperations {
+public abstract class WebOperations {
 
     private final WebDriver driver;
     private final WebDriverWait wait;
@@ -17,7 +17,7 @@ public class WebOperations {
 
     public WebOperations(WebDriver driver){
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10L));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15L));
         this.action = new Actions(driver);
         initElements(driver, this);
     }
