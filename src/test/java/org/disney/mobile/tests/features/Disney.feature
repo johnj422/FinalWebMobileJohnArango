@@ -7,5 +7,6 @@ Feature: Disney App Navigation Test
   Background:
     Given I am in the Dashboard Screen
 
-  Scenario: Validate Map screen
+  Scenario: Validate Map screen display
     Given I am in the Map Screen
+    Then Map screen elements must be displayed

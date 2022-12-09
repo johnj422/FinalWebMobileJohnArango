@@ -56,6 +56,7 @@ public class MapScreen extends BaseScreen {
      * @author John Arango
      */
     public int checkCategoryContainerSize(){
+        isElementAvailable(categoryList);
         return categoryListContainer.size();
     }
 
