@@ -4,7 +4,7 @@
 	"platformVersion": "11",
 	"appPackage": "com.disney.wdpro.dlr",
 	"appActivity": "com.disney.wdpro.park.activities.SplashActivity",
-	"app": "org/disney/mobile/apps/Disneyland®_v7.18_APKPure_Installer.apk",
+	"app": "C:\\Users\\john.arango\\Documents\\Disneyland®_v7.18_APKPure_Installer.apk",
 	"automationName": "UiAutomator2",
 	"autoGrantPermissions": "true",
     "skipServerInstallation": "true",
