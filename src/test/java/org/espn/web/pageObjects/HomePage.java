@@ -8,14 +8,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends WebOperations {
 
-
-    //Promo Banner Locators
-    @FindBy(css = ".promo-banner-container > iframe")
-    private WebElement promoBannerIFrame;
-
-    @FindBy(css = "#fittPageContainer .PromoBanner__CloseBtn")
-    private WebElement bannerCloseButton;
-
     //SignUp Locators
     @FindBy(id = "BtnCreateAccount")
     private WebElement signUpButton;
@@ -69,8 +61,13 @@ public class HomePage extends WebOperations {
     @FindBy(css = ".user")
     private WebElement userIcon;
 
+    @FindBy(id = "global-user-trigger")
+    private WebElement notLoggedUserIcon;
+
     @FindBy(css = ".display-user")
     private WebElement userPanel;
+
+
 
     @FindBy(id = "AccountDeleteLink")
     private WebElement accountDeleteLink;
@@ -80,17 +77,11 @@ public class HomePage extends WebOperations {
     @FindBy(css = "#TextError")
     private WebElement errorMsg;
 
+    @FindBy(className = "watch")
+    private WebElement watchLink;
+
     public HomePage(WebDriver driver) {
         super(driver);
-    }
-
-    public void closeBanner() {
-        if (promoBannerIFrame == null) {
-            super.getDriver().switchTo().defaultContent();
-        }
-
-        super.getDriver().switchTo().frame(promoBannerIFrame);
-        clickElement(bannerCloseButton);
     }
 
     public void clickSignUpButton(){
@@ -147,8 +138,11 @@ public class HomePage extends WebOperations {
     }
 
     public WebElement getUserIcon() {
+        waitForVisibility(userIcon);
         return userIcon;
     }
+
+    public WebElement getNotLoggedUserIcon() { return notLoggedUserIcon; }
 
     public String validateUserName(){
         return userPanel.getText();
@@ -224,20 +218,21 @@ public class HomePage extends WebOperations {
         clickElement(btnSubmit);
     }
 
-    public void waitForCancelBtn(){
-        waitForClickable(cancelBtn);
-    }
-
-    public void waitForErrorMsg(){
-        waitForClickable(errorMsg);
-    }
-
-    public void validateReLogin(String email, String password){
+    public void loginToAccount(String email, String password){
         userLogin();
         changingIframe(userFrame);
         sendUserEmail(email);
         sendUserPassword(password);
         clickElement(btnSubmit);
 
+    }
+
+    public WatchPage navigateToWatch(){
+        clickElement(watchLink);
+        return new WatchPage(super.getDriver());
+    }
+
+    public void pageRefresh(){
+        super.getDriver().navigate().refresh();
     }
 }

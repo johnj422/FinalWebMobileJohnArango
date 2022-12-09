@@ -21,7 +21,7 @@
         <cucumberTestNG.version>7.9.0</cucumberTestNG.version>
         <slf4j.version>2.0.5</slf4j.version>
         <tinylog.version>2.6.0-M2</tinylog.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     </properties>
 
     <dependencies>

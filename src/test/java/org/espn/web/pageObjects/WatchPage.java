@@ -15,6 +15,7 @@ public class WatchPage extends HomePage{
     @FindBy(className = "watch")
     private WebElement watchLink;
 
+
     @FindBy(css = ".BucketsContainer > div")
     private List<WebElement> carrouselContainer;
 
@@ -33,10 +34,6 @@ public class WatchPage extends HomePage{
     @FindBy(css = ".display-user > span")
     private WebElement userName;
 
-    public void navigateToWatch(){
-        clickElement(watchLink);
-    }
-
     public int getCarrouselContainerSize() {
         return carrouselContainer.size();
     }
@@ -44,7 +41,7 @@ public class WatchPage extends HomePage{
     public int getNoTitleCards() {
         int count = 0;
         for(WebElement carrouselCard : carrouselCards){
-            if(carrouselCard.getText().isEmpty()){
+            if(carrouselCard.getAttribute("title") == null){
                 count++;
             }
         } return count;
@@ -67,8 +64,9 @@ public class WatchPage extends HomePage{
         clickElement(closeButton);
     }
 
-    public void clickBack(){
+    public HomePage navigateToHomePage(){
         super.getDriver().navigate().back();
+        return new HomePage(super.getDriver());
     }
 
     public WebElement getUserOnline() {

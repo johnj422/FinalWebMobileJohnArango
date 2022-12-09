@@ -4,8 +4,8 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.checkerframework.checker.units.qual.C;
 import org.espn.web.pageObjects.HomePage;
+import org.espn.web.pageObjects.WatchPage;
 import org.espn.web.tests.hooks.WebHooks;
 import org.testng.asserts.SoftAssert;
 import org.tinylog.Logger;
@@ -14,6 +14,7 @@ import org.espn.web.helpers.Constants;
 public class WebSteps {
 
     private HomePage homePage;
+    private WatchPage watchPage;
     SoftAssert softAssert = new SoftAssert();
 
     @Given("I am in the ESPN website")
@@ -75,6 +76,73 @@ public class WebSteps {
     public void iShouldBeLoggedIn() {
         Logger.info("Validating if user was successfully created");
         homePage.performMouseHover(homePage.getUserIcon());
-        softAssert.assertEquals(homePage.validateUserName(), Constants.FIRST_NAME, "User name should be ${Constants.FIRST_NAME}");
+        softAssert.assertTrue(homePage.validateUserName().contains(Constants.FIRST_NAME), "User name should contains " +
+                Constants.FIRST_NAME);
+        softAssert.assertAll();
+    }
+
+    @Given("I am logged in")
+    public void iAmLoggedIn() {
+        Logger.info("Login to account");
+        homePage.loginToAccount(Constants.LOGIN_EMAIL, Constants.PASSWORD);
+    }
+
+    @When("I navigate to WatchPage")
+    public void iNavigateToWatchPage() {
+        Logger.info("Navigating to WatchPage");
+        watchPage = homePage.navigateToWatch();
+    }
+
+    @Then("All WatchPage element validations should be completed")
+    public void validateWatchPageElements() {
+        Logger.info("Validating that there is at least one carrousel");
+        softAssert.assertTrue(watchPage.getCarrouselContainerSize() > 0, "Should have at least one carrousel");
+        Logger.info("Validating that every card in the carrousel has title and description");
+        softAssert.assertEquals(watchPage.getNoTitleCards(), 0, "Every card must have title and description");
+        Logger.info("Clicking second carrousel's card");
+        watchPage.clickSecondCard();
+        Logger.info("Checking that close button is displayed");
+        softAssert.assertTrue(watchPage.validateCloseButton(), "Close button must be displayed");
+        Logger.info("Closing details");
+        watchPage.clickCloseButton();
+        softAssert.assertAll();
+    }
+
+    @And("I should be back in the HomePage")
+    public void iShouldBeBackInTheHomePage() {
+        Logger.info("Navigating back to HomePage");
+        watchPage.navigateToHomePage();
+    }
+
+    @When("I hover the mouse to user icon")
+    public void iHoverTheMouseToUserIcon() {
+        Logger.info("Hovering mouse to user panel");
+        homePage.performMouseHover(homePage.getUserIcon());
+
+    }
+
+    @Then("It should display the user's name")
+    public void itShouldDisplayTheUserSName() {
+        Logger.info("Validating displayed name");
+        softAssert.assertEquals(homePage.validateUserName(), "Welcome"+Constants.FIRST_NAME+"!", "User's name must " +
+                "be displayed");
+        softAssert.assertAll();
+    }
+
+    @When("I logged out")
+    public void iAmLoggedOut() {
+        Logger.info("Login out");
+        homePage.performMouseHover(homePage.getUserIcon());
+        homePage.clickLogOutButton();
+    }
+
+    @Then("It should not display any users name")
+    public void itShouldNotDisplayAnyUserSName() {
+        homePage.pageRefresh();
+        Logger.info("Hovering mouse to user's panel");
+        homePage.performMouseHover(homePage.getUserIcon());
+        Logger.info("Validating displayed name");
+        softAssert.assertEquals(homePage.validateUserName(), "Welcome!", "No User's name should be displayed");
+        softAssert.assertAll();
     }
 }

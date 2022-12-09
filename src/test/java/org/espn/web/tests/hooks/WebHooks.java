@@ -21,11 +21,11 @@ public class WebHooks {
         driver.getDriver().get(Constants.URL);
     }
 
-/*    @After
+    @After
     public void teardown(){
         Logger.info("Shutting down");
         driver.getDriver().quit();
-    }*/
+    }
 
     public static WebDriver getDriver(){
         return driver.getDriver();

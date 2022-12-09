@@ -23,3 +23,18 @@ Feature: ESPN web page Navigation Test
     Then I should be logged in
 
   Scenario: Navigate to WatchPage
+    Given I am logged in
+    When I navigate to WatchPage
+    Then All WatchPage element validations should be completed
+    And I should be back in the HomePage
+
+  Scenario: Validate logged in Welcome text
+    Given I am logged in
+    When I hover the mouse to user icon
+    Then It should display the user's name
+
+  Scenario: Validate logged out Welcome text
+    Given I am logged in
+    When I logged out
+    Then It should not display any users name
+

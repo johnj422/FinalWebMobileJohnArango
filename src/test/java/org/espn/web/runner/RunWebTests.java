@@ -5,9 +5,10 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
         features = "src/test/java/org/espn/web/tests/features",
-        glue = {"org.espn.web.tests.steps"}
+        glue = "org.espn.web.tests.steps"
 
 )
 public class RunWebTests extends AbstractTestNGCucumberTests {
+
 
 }
