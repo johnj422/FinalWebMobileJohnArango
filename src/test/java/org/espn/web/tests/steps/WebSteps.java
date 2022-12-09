@@ -6,7 +6,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.espn.web.pageObjects.HomePage;
 import org.espn.web.pageObjects.WatchPage;
-import org.espn.web.tests.hooks.WebHooks;
 import org.testng.asserts.SoftAssert;
 import org.tinylog.Logger;
 import org.espn.web.helpers.Constants;

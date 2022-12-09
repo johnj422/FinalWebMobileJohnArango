@@ -1,4 +1,4 @@
-package org.espn.web.tests.hooks;
+package org.espn.web.tests.steps;
 
 import io.cucumber.java.*;
 import org.espn.web.config.Driver;
@@ -9,7 +9,7 @@ import org.tinylog.Logger;
 
 public class WebHooks {
 
-    protected static Driver driver;
+    private static Driver driver;
 
     @Before("@webAutomation")
     public void testSetUp(){
