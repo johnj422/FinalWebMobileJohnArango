@@ -34,6 +34,10 @@ public abstract class MobileOperations {
      */
     public AndroidDriver<AndroidElement> getDriver() { return driver; }
 
+    /**
+     * Swipes the screen by received percentage
+     * @param percentage
+     */
     public void swipeVertical(float percentage) {
         Dimension windowSize = this.getDriver().manage().window().getSize();
         TouchAction ta = new TouchAction(this.getDriver());
