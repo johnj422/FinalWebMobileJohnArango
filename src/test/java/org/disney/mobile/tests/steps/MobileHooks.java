@@ -14,7 +14,10 @@ public class MobileHooks {
 
     public static MobileDriver driver;
 
-   @Before
+    /**
+     * Executes the Environment setup before everything
+     */
+   @Before("@mobileAutomation")
     public void environmentSetup(){
        DesiredCapabilities capabilities = new DesiredCapabilities();
        ConfigCapabilities.deviceSetUp(capabilities);
@@ -27,9 +30,16 @@ public class MobileHooks {
        }
    }
 
-   @After
-    public void tearDown(){driver.getDriver().quit();}
+    /**
+     * Terminates the driver's instance
+     */
+   @After("@mobileAutomation")
+    public void MobileTearDown(){driver.getDriver().quit();}
 
+    /**
+     * Drivers getter
+     * @return driver: AndroidDriver
+     */
     public static AndroidDriver<AndroidElement> getDriver() {
         return driver.getDriver();
     }
