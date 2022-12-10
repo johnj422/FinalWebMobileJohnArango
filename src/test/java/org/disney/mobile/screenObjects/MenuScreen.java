@@ -10,7 +10,6 @@ public class MenuScreen extends BaseScreen {
      * Constructor method for standard screens object.
      *
      * @param driver : AndroidDriver
-     * @author John Arango
      */
     public MenuScreen(AndroidDriver<AndroidElement> driver) {
         super(driver);
@@ -41,7 +40,6 @@ public class MenuScreen extends BaseScreen {
 
     /**
      * Swipes the screen down to the bottom
-     * @author John Arango
      */
     public void swipeDown() {
         getDriver().findElement(
@@ -52,7 +50,6 @@ public class MenuScreen extends BaseScreen {
     /**
      *
      * @return True if the Profile Option is available, otherwise returns false
-     * @author John Arango
      */
     public boolean isMyProfileVisible() {
         return isElementAvailable(myProfileOption);
@@ -61,7 +58,6 @@ public class MenuScreen extends BaseScreen {
     /**
      *
      * @return True if the Property Rules option is available, otherwise returns false
-     * @author John Arango
      */
     public boolean isPropertyRulesVisible() {
         return isElementAvailable(propertyRulesOption);
@@ -70,7 +66,6 @@ public class MenuScreen extends BaseScreen {
     /**
      *
      * @return True if the Link to Account Option is available, otherwise returns false
-     * @author John Arango
      */
     public boolean isLinkToAccountVisible() {
         return isElementAvailable(linkToAccountOption);
@@ -79,7 +74,6 @@ public class MenuScreen extends BaseScreen {
     /**
      *
      * @return True if the Help Option is available, otherwise returns false
-     * @author John Arango
      */
     public boolean isHelpVisible() {
         return isElementAvailable(helpOption);
@@ -88,7 +82,6 @@ public class MenuScreen extends BaseScreen {
     /**
      *
      * @return True if the Privacy & Legacy Option is available, otherwise returns false
-     * @author John Arango
      */
     public boolean isPrivacyAndLegaVisible() {
         return isElementAvailable(privacyAndLegalOption);
@@ -97,7 +90,6 @@ public class MenuScreen extends BaseScreen {
     /**
      *
      * Taps the Privacy & Legal Option
-     * @author John Arango
      */
     public void tapPrivacyAndLegal() {
         isElementAvailable(privacyAndLegalOption);
@@ -107,7 +99,6 @@ public class MenuScreen extends BaseScreen {
     /**
      *
      * @return True if the Privacy & Policy Option is available, otherwise returns false
-     * @author John Arango
      */
     public boolean isPrivacyPolicyVisible() {
         return isElementAvailable(privacyPolicyOption);
@@ -116,7 +107,6 @@ public class MenuScreen extends BaseScreen {
     /**
      *
      * @return True if the Terms of Use Option is available, otherwise returns false
-     * @author John Arango
      */
     public boolean isTermsOfUseVisible() {
         return isElementAvailable(termsOfUseOption);
@@ -125,7 +115,6 @@ public class MenuScreen extends BaseScreen {
     /**
      *
      * @return True if the Supplemental Terms Option is available, otherwise returns false
-     * @author John Arango
      */
     public boolean isSupplementalTermsVisible() {
         return isElementAvailable(supplementalTermsOption);
@@ -134,7 +123,6 @@ public class MenuScreen extends BaseScreen {
     /**
      *
      * @return True if the Legal Notices Option is available, otherwise returns false
-     * @author John Arango
      */
     public boolean isLegalNoticesVisible() {
         return isElementAvailable(legalNoticesOption);
@@ -143,7 +131,6 @@ public class MenuScreen extends BaseScreen {
     /**
      *
      * @return True if the Proper Rules Option is available in this menu, otherwise returns false
-     * @author John Arango
      */
     public boolean isPropertyRules2Visible() {
         return isElementAvailable(propertyRules2Option);
@@ -152,7 +139,6 @@ public class MenuScreen extends BaseScreen {
     /**
      *
      * @return True if the Electronic Communication Disclosure Option is available, otherwise returns false
-     * @author John Arango
      */
     public boolean isElectronicCommVisible() {
         return isElementAvailable(electronicCommOption);
