@@ -9,7 +9,6 @@ import java.util.List;
 /**
  * Map screen.
  *
- * @author Hans.Marquez
  */
 public class MapScreen extends BaseScreen {
 
@@ -17,7 +16,6 @@ public class MapScreen extends BaseScreen {
      * Constructor method.
      *
      * @param driver the driver
-     * @author Hans.Marquez
      */
     public MapScreen(AndroidDriver<AndroidElement> driver) {
         super(driver);
@@ -32,7 +30,7 @@ public class MapScreen extends BaseScreen {
     private AndroidElement hotelsIncluded;
 
     /**
-     * @author Hans.Marquez
+     * Checks if categoryList is displayed
      * return true if Category List element is displayed in screen, otherwise false.
      */
 
@@ -42,7 +40,7 @@ public class MapScreen extends BaseScreen {
 
     /**
      * Checks if the Category Button is displayed at the top bar, if so, taps the Category option
-     * @author John Arango
+     *
      */
     public void tapCategoryButton(){
         if(categoryIsDisplayed()){
@@ -53,7 +51,6 @@ public class MapScreen extends BaseScreen {
     /**
      * Checks the Category List
      * @return The amount of items included in the list
-     * @author John Arango
      */
     public int checkCategoryContainerSize(){
         isElementAvailable(categoryList);
@@ -62,7 +59,6 @@ public class MapScreen extends BaseScreen {
 
     /**
      * @return True if the Category Hotels is available, otherwise returns false
-     * @author John Arango
      */
     public boolean isHotelsIncluded() {
         return isElementAvailable(hotelsIncluded);
