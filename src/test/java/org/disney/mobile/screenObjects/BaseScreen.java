@@ -8,6 +8,10 @@ import org.disney.mobile.config.MobileOperations;
 public abstract class BaseScreen extends MobileOperations {
 
 
+    /**
+     * Constructor method for BaseScreen
+     * @param driver
+     */
     public BaseScreen(AndroidDriver<AndroidElement> driver) { super(driver); }
 
 

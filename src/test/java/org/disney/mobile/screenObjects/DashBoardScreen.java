@@ -6,9 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.tinylog.Logger;
 
 /**
- * DashBoard screen.
- *
- * @author Hans.Marquez
+ * DashBoard screen
  */
 public class DashBoardScreen extends BaseScreen {
 
@@ -16,7 +14,6 @@ public class DashBoardScreen extends BaseScreen {
      * Constructor method.
      *
      * @param driver : AndroidDriver
-     * @author Hans.Marquez
      */
     public DashBoardScreen(AndroidDriver<AndroidElement> driver) {
         super(driver);
@@ -44,7 +41,7 @@ public class DashBoardScreen extends BaseScreen {
 
     /**
      * First taps to close default initial screens
-     * @author John Arango
+     *
      */
     public void tapingInitialButtons() {
         Logger.info("Taping dismissWelcome");
@@ -60,7 +57,7 @@ public class DashBoardScreen extends BaseScreen {
     /**
      * Navigate to Map Screen from DashBoard Screen.
      * @return New Map Screen
-     * @author John Arango
+     *
      */
     public MapScreen goToMapScreen() {
 
@@ -76,7 +73,7 @@ public class DashBoardScreen extends BaseScreen {
 
     /**
      * @return True if the map button is displayed in the bottom bar otherwise returns false
-     * @author John Arango
+     *
      */
     public boolean mapButtonIsDisplayed() {
         return isElementAvailable(mapButton);
@@ -85,7 +82,7 @@ public class DashBoardScreen extends BaseScreen {
     /**
      * Checks if the Menu button is displayed in the bottom bar
      * @return New Menu Screen
-     * @author John Arango
+     *
      */
     public MenuScreen goToMenuScreen(){
 
@@ -101,7 +98,6 @@ public class DashBoardScreen extends BaseScreen {
 
     /**
      * Checks if the Add Plans option is available on the bottom bar if so, taps the option.
-     * @author John Arango
      */
     public void goToAddPlans(){
         tapingInitialButtons();
@@ -113,7 +109,6 @@ public class DashBoardScreen extends BaseScreen {
 
     /**
      * @return True if the reserve option is available in the add plans option on the bottom bar otherwise returns false
-     * @author John Arango
      */
     public boolean isReserveOptionVisible(){
         return isElementAvailable(reserveOption);
