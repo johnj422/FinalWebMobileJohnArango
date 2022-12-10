@@ -2,7 +2,7 @@ package org.disney.mobile.tests.steps;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import io.cucumber.java.Before;
+import io.cucumber.java.*;
 import org.disney.mobile.config.MobileDriver;
 import org.disney.mobile.util.ConfigCapabilities;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -27,8 +27,8 @@ public class MobileHooks {
        }
    }
 
-   /*@After
-    public void tearDown(){driver.getDriver().quit();}*/
+   @After
+    public void tearDown(){driver.getDriver().quit();}
 
     public static AndroidDriver<AndroidElement> getDriver() {
         return driver.getDriver();

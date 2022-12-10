@@ -1,7 +1,7 @@
 package org.espn.web.tests.steps;
 
 import io.cucumber.java.*;
-import org.espn.web.config.Driver;
+import org.espn.web.config.WebDriverConfig;
 import org.espn.web.helpers.Constants;
 import org.openqa.selenium.WebDriver;
 import org.tinylog.Logger;
@@ -9,25 +9,25 @@ import org.tinylog.Logger;
 
 public class WebHooks {
 
-    private static Driver driver;
+    private static WebDriverConfig webDriverConfig;
 
     @Before("@webAutomation")
     public void testSetUp(){
-        driver = new Driver();
+        webDriverConfig = new WebDriverConfig();
         Logger.info("Deleting all cookies");
-        driver.getDriver().manage().deleteAllCookies();
-        driver.getDriver().manage().window().maximize();
+        webDriverConfig.getDriver().manage().deleteAllCookies();
+        webDriverConfig.getDriver().manage().window().maximize();
         Logger.info("Navigating to Homepage");
-        driver.getDriver().get(Constants.URL);
+        webDriverConfig.getDriver().get(Constants.URL);
     }
 
     @After
     public void teardown(){
         Logger.info("Shutting down");
-        driver.getDriver().quit();
+        webDriverConfig.getDriver().quit();
     }
 
     public static WebDriver getDriver(){
-        return driver.getDriver();
+        return webDriverConfig.getDriver();
     }
 }

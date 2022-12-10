@@ -38,7 +38,8 @@ public class DashBoardScreen extends BaseScreen {
     @AndroidFindBy(uiAutomator = "new UiSelector().resourceIdMatches(\"com.disney.wdpro.dlr:id/tab_animated_icon\")")
     private AndroidElement addPlansButton;
 
-    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.FrameLayout\").descriptionContains(\"Reserve Dining\")")
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.FrameLayout\").descriptionContains" +
+            "(\"Check Dining Availability\")")
     private AndroidElement reserveOption;
 
     /**
@@ -70,7 +71,7 @@ public class DashBoardScreen extends BaseScreen {
         if (this.isElementAvailable(mapButton)){
             click(mapButton);
         }
-        return new MapScreen(driver);
+        return new MapScreen(getDriver());
     }
 
     /**
@@ -95,7 +96,7 @@ public class DashBoardScreen extends BaseScreen {
         if (this.isElementAvailable(menuButton)){
             click(menuButton);
         }
-        return new MenuScreen(driver);
+        return new MenuScreen(getDriver());
     }
 
     /**

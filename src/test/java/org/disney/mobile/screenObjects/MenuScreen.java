@@ -44,7 +44,7 @@ public class MenuScreen extends BaseScreen {
      * @author John Arango
      */
     public void swipeDown() {
-        driver.findElement(
+        getDriver().findElement(
                 MobileBy.AndroidUIAutomator(
                         "new UiScrollable(new UiSelector().scrollable(true)).flingToEnd(10)"));
     }
