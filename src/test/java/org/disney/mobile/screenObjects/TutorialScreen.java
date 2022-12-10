@@ -9,15 +9,13 @@ import org.tinylog.Logger;
 /**
  * Object of the first screen that appears when we open the application.
  *
- * @author Arley.Bolivar
  */
 public class TutorialScreen extends BaseScreen {
 
     /**
      * Constructor method.
      *
-     * @param driver the driver
-     * @author Arley.Bolivar
+     * @param driver: AndroidDriver
      */
     public TutorialScreen(AndroidDriver<AndroidElement> driver) {
         super(driver);
@@ -37,7 +35,6 @@ public class TutorialScreen extends BaseScreen {
     private AndroidElement allowButton;
 
     /**
-     * @author Hans.Marquez
      * Start permissions process.
      */
     public void startPermissionsProcess() {
@@ -45,7 +42,6 @@ public class TutorialScreen extends BaseScreen {
     }
 
     /**
-     * @author Hans.Marquez
      * Share Location permissions process.
      */
     public DashBoardScreen shareLocationPermissions() {
